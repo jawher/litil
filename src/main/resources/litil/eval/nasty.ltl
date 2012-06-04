@@ -1,0 +1,6 @@
+let x=5
+let addx y = x + y
+
+let x = 1
+let y = addx 3
+

@@ -1,0 +1,7 @@
+second stage of lexer:
+    - trim newline tokens
+    - strucutre: indent/denindent
+    - collapse successive newlines, indents, deindents
+
+
+    Token peek(int lookahead) throws LexingException;

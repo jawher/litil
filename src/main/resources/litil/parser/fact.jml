@@ -1,0 +1,10 @@
+let fact (n: Number) : Number =
+  let trfact (r: Number) (n: Number) : Number =
+    if n=1 then
+      r
+    else
+      trfact (n-1) (r * n)
+
+  trfact 1 n
+
+print (int2str (fact 5))

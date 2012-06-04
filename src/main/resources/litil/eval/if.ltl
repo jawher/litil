@@ -1,0 +1,6 @@
+let a = 2
+let b = 3
+let x = if a=a then
+  66
+else
+  42

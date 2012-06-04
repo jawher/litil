@@ -1,0 +1,33 @@
+data List a = Cons a (List a) | Nil
+
+let l = Cons 5 (Cons 6 Nil)
+
+let len l =
+  match l
+    Cons h t => 1 + len(t)
+    Nil => 0
+
+let x = len l
+
+let map f l =
+  match l
+    Cons h t => Cons (f h) (map f t)
+    Nil => Nil
+
+let l2 = map (\x -> x%2=0) l
+
+let a = 5
+
+let adda x = x + a
+
+let a = 7
+
+let b = adda 2
+
+let c = a + 2
+
+let a = 'a'
+
+let s = "qdsfsdf"
+
+print s

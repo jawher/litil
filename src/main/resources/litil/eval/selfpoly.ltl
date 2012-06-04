@@ -1,0 +1,5 @@
+let f x g =
+  if x=0 then
+    f 1 "a"
+  else
+    f 0 6

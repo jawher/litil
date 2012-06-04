@@ -1,0 +1,5 @@
+let d = ((4, true), ("test", 'c', 45))
+
+let ((_, bool), (_, _, _)) = d
+
+let x = bool

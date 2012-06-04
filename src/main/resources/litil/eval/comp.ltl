@@ -1,0 +1,3 @@
+let comp f g x = f (g x)
+let dblSucc = comp succ dbl
+let al = dblSucc 5

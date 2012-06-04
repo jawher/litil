@@ -1,0 +1,46 @@
+data List a = Cons a (List a) | Nil
+
+let add x y = x + y
+
+let len l =
+  match l
+    Nil => 0
+    Cons h t => 1 + len t
+
+let map f xs =
+  match xs
+    Nil => Nil
+    Cons h t => Cons (f h) (map t f)
+
+let fold f s xs =
+  match xs
+    Nil => s
+    Cons h t => fold f (f s h) t
+
+let filter f xs =
+  match xs
+    Nil => Nil
+    Cons h t => if f h then Cons h (filter f t) else (filter f t)
+
+let xs = Cons 5 (Cons 6 Nil)
+
+let s = fold add 0 xs
+
+let even x = x % 2 = 0
+
+let e = filter even xs
+
+let range x y =
+  let rec_range x y res =
+    if x > y then
+      res
+    else
+      rec_range x (y-1) (Cons y res)
+  rec_range x y Nil
+
+let oneToFive = range 1 5
+
+let sum xs = fold add 0 xs
+
+let sumOneToFive = sum (range 1 5)
+

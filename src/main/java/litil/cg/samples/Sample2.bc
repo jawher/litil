@@ -1,0 +1,67 @@
+/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin/java -Didea.launcher.port=7546 "-Didea.launcher.bin.path=/Applications/IntelliJ IDEA 11 CE.app/bin" -Dfile.encoding=UTF-8 -classpath "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/deploy.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/dt.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/javaws.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/jconsole.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/management-agent.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/plugin.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/sa-jdi.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-rt.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-string.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/apple_provider.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/dnsns.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/localedata.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/sunjce_provider.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/sunpkcs11.jar:/Users/jawher/Dropbox/coding/jaml/target/classes:/Users/jawher/.m2/repository/org/ow2/asm/asm-all/4.0/asm-all-4.0.jar:/Applications/IntelliJ IDEA 11 CE.app/lib/idea_rt.jar" com.intellij.rt.execution.application.AppMain litil.cg.Deasm
+// class version 50.0 (50)
+// access flags 0x21
+public class litil/cg/samples/Sample2 {
+
+  // compiled from: Sample2.java
+
+  // access flags 0x1
+  public I x
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 3 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+   L1
+    LINENUMBER 4 L1
+    ALOAD 0
+    ICONST_3
+    PUTFIELD litil/cg/samples/Sample2.x : I
+    RETURN
+   L2
+    LOCALVARIABLE this Llitil/cg/samples/Sample2; L0 L2 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public eval(I)I
+   L0
+    LINENUMBER 7 L0
+    ICONST_5
+    ISTORE 2
+   L1
+    LINENUMBER 8 L1
+    ALOAD 0
+    GETFIELD litil/cg/samples/Sample2.x : I
+    ILOAD 1
+    ILOAD 2
+    IMUL
+    IADD
+    IRETURN
+   L2
+    LOCALVARIABLE this Llitil/cg/samples/Sample2; L0 L2 0
+    LOCALVARIABLE y I L0 L2 1
+    LOCALVARIABLE z I L1 L2 2
+    MAXSTACK = 3
+    MAXLOCALS = 3
+
+  // access flags 0x1
+  public helios()V
+   L0
+    LINENUMBER 12 L0
+    ALOAD 0
+    ICONST_5
+    INVOKEVIRTUAL litil/cg/samples/Sample2.eval (I)I
+    POP
+   L1
+    LINENUMBER 13 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Llitil/cg/samples/Sample2; L0 L2 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+}
+
+Process finished with exit code 0

@@ -1,0 +1,5 @@
+let zero x = if x>0 then  zero (x-1) else 0
+let f x = zero x
+let zero x = 15
+let y = f 3
+

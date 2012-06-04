@@ -1,0 +1,12 @@
+exception Ex1 String
+exception Ex2 Number
+exception Ex3 Boolean
+
+let g x = if x>0 then throw Ex1 "yes" else "g"
+let f x =
+  match g x
+    _ => throw Ex1 "hi"
+    z => throw Ex2 34
+    h => throw Ex3 true
+
+let a = f 0

@@ -1,0 +1,15 @@
+data List a = Cons a (List a) | Nil
+
+let ys = Nil
+let xs = Cons 5 Nil
+
+let len l =
+  match l
+    Nil => 0
+    Cons h t => 1 + len t
+
+let xy = (len xs, len ys)
+
+let zs = Cons 5 (Cons 4 (Cons 3 Nil))
+
+let z = len zs

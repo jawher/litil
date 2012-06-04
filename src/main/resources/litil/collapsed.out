@@ -1,0 +1,86 @@
+INDENT ('  ') @ 5:1
+NAME ('a') @ 5:3
+INDENT ('    ') @ 6:1
+NAME ('b') @ 6:5
+SYM ('+') @ 6:7
+NAME ('c56f') @ 6:9
+NEWLINE ('\n') @ 7:1
+NUM ('45') @ 7:1
+NAME ('b') @ 7:3
+SYM ('(') @ 7:5
+STRING ('ohai') @ 7:7
+NEWLINE ('\n') @ 8:1
+STRING ('bla \n blo " ohi \') @ 8:1
+NEWLINE ('\n') @ 9:1
+CHAR ('a') @ 9:1
+CHAR ('\n') @ 9:5
+CHAR ('\') @ 9:10
+CHAR ('5') @ 9:15
+INDENT ('    ') @ 10:1
+CHAR ('\') @ 10:5
+INDENT ('  ') @ 12:1
+SYM ('-') @ 12:3
+NUM ('5') @ 12:4
+BOOL ('true') @ 12:6
+KEYWORD ('let') @ 12:11
+NAME ('letrue') @ 12:15
+BOOL ('false') @ 12:22
+NEWLINE ('\n') @ 14:1
+KEYWORD ('let') @ 14:1
+NAME ('x') @ 14:5
+SYM ('=') @ 14:7
+NUM ('5') @ 14:9
+NEWLINE ('\n') @ 15:1
+KEYWORD ('let') @ 15:1
+NAME ('b') @ 15:5
+SYM ('=') @ 15:7
+BOOL ('true') @ 15:9
+NEWLINE ('\n') @ 17:1
+KEYWORD ('let') @ 17:1
+NAME ('gcd') @ 17:5
+NAME ('a') @ 17:9
+NAME ('b') @ 17:11
+SYM ('=') @ 17:13
+INDENT ('  ') @ 18:1
+NAME ('if') @ 18:3
+NAME ('b') @ 18:6
+SYM ('=') @ 18:8
+NUM ('0') @ 18:10
+NAME ('then') @ 18:12
+INDENT ('    ') @ 19:1
+NAME ('a') @ 19:5
+INDENT ('  ') @ 20:1
+NAME ('else') @ 20:3
+INDENT ('    ') @ 21:1
+NAME ('gcd') @ 21:5
+NAME ('b') @ 21:9
+SYM ('(') @ 21:11
+NAME ('a') @ 21:12
+SYM ('%') @ 21:14
+NAME ('b') @ 21:16
+SYM (')') @ 21:17
+NEWLINE ('\n') @ 23:1
+KEYWORD ('let') @ 23:1
+NAME ('add') @ 23:5
+NAME ('a') @ 23:9
+NAME ('b') @ 23:11
+SYM ('=') @ 23:13
+NAME ('a') @ 23:15
+NEWLINE ('\n') @ 25:1
+KEYWORD ('let') @ 25:1
+NAME ('x') @ 25:5
+SYM ('=') @ 25:7
+NAME ('add') @ 25:9
+NUM ('5') @ 25:13
+STRING ('a') @ 25:15
+NEWLINE ('\n') @ 27:1
+NAME ('log') @ 27:1
+SYM ('(') @ 27:5
+NAME ('gcd') @ 27:6
+NUM ('49') @ 27:10
+NUM ('35') @ 27:13
+SYM (')') @ 27:15
+NEWLINE ('\n') @ 28:1
+NUM ('5') @ 28:1
+BOOL ('true') @ 28:2
+EOF ('$') @ 35:1

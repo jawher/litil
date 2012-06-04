@@ -1,0 +1,12 @@
+let a = (5, "b")
+let (i, s) = a
+
+let f (x, y) z = x + y * z
+
+let x = f (4, 5) 6
+
+data Person = Person String Number
+
+let name (Person n a) = n
+
+let (a, b) = (b, a)

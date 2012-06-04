@@ -1,0 +1,17 @@
+let x = {id: 3, name: "djo"}
+
+let y = x.name
+
+let nameOf x = x.name
+
+let a = nameOf x
+let b = nameOf {name: 5}
+
+data Entity = Person {name: String, age: Number, single: Boolean} | Object String
+
+let nam e =
+  match e
+    Person p => p.name
+    Object x => x
+
+let n = nam (Person {name: "djo", age: 15, single: true})

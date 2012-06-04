@@ -1,0 +1,24 @@
+data List a = Cons a (List a) | Nil
+data Tree a = Null | Leaf a | Node (Tree a) a (Tree a)
+
+let xs = Cons 5 (Cons 6 Nil)
+let t = Node (Leaf 5) 4 (Leaf 3)
+
+let a =
+  match xs
+    x => ("id", x)
+
+let a =
+  match xs
+    _ => ("wildcard")
+
+let a =
+  match xs
+    Nil => ("impossible")
+    _ => ("yeah, wildcard")
+
+let a =
+  match xs
+    Nil => ("impossible")
+    Cons _ tail => ("tail", tail)
+

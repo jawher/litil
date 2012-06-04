@@ -1,0 +1,4 @@
+let f = g
+let g x = x % x
+
+let x = f 5

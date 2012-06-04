@@ -1,0 +1,55 @@
+let a = 5
+let f x = 2 * a + x
+
+declareField a:I
+
+declareField a-1:I
+
+declareMethod f:(I)I // and rename a to a-1
+  // ((+ ((* 2) a)) x)
+  //transform to (+ (* 2 a) x)
+  push 2
+  pushField a
+  invokeMeth *
+  pushParam x
+  invokeMeth +
+
+constructor
+  setField a 5
+  setField a-1 (getField a)
+
+
+let map f xs = ....
+
+let g = map double
+
+let l = g [1 2 3]
+
+
+
+
+
+let a = 5
+let f x = 2 * a + x
+let a = 6
+let x = f 3
+
+field a + in constr, set a = 5
+
+
+method f (I)I
+  // ((+ ((* 2) a)) x)
+  //transform to (+ (* 2 a) x)
+  push 2
+  pushField a
+  invokeMeth *
+  pushParam x
+  invokeMeth +
+
+bind a -> a1
+
+field a1 + in constr, set a1 = 6
+
+method x
+  push 3
+  invoke f

@@ -1,0 +1,7 @@
+data List a = Cons a (List a) | Nil
+
+let xs = Cons 5 (Cons 6 Nil)
+
+let map (l: [a]) (f: a->b) : [b] = 4
+let filter (l: [a]) (f: a->Bool) : [a] = 4
+let flatMap (l: [a]) (f: a->[b]) : [b] = 42

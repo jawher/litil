@@ -1,0 +1,24 @@
+data List a = Cons a (List a) | Nil
+
+let fold f s xs =
+  match xs
+    Nil => s
+    Cons h t => fold f (f s h) t
+
+let xs = Cons 5 (Cons 6 Nil)
+
+let s = fold (\res x -> res + x) 0 xs
+
+let map f xs =
+  match xs
+    Nil => Nil
+    Cons h t => Cons (f h) (map f t)
+
+let m = 2
+
+let f = \x -> x
+let mfx = \x -> m * f x
+let m = 3
+let f = \x -> 1
+let xsmfx = map mfx
+let dxs = xsmfx xs

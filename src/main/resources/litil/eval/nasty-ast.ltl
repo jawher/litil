@@ -1,0 +1,29 @@
+data Opr = Add | Sub
+data Expr = Num Number | Ap Opr Expr Expr
+
+let a = Ap Add (Num 5) (Num 6)
+
+let eval e =
+  match e
+    Num n => n
+    Ap o e1 e2 =>
+      match o
+        Add => (eval e1) + (eval e2)
+        Sub => (eval e1) - (eval e2)
+
+let av = eval a
+
+let eval e =
+  match e
+    Num n => n
+    Ap Add e1 e2 => (eval e1) + (eval e2)
+    Ap Sub e1 e2 => (eval e1) - (eval e2)
+
+let av = eval a
+
+let simplify e =
+  match e
+    Ap Add (Num n) e2 => if n=0 then e2 else e
+
+let a = Ap Add (Num 0) (Num 6)
+let b = simplify a

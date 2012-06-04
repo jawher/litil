@@ -1,0 +1,4 @@
+let x = `new java.util.Pattern`
+let m = x.compile "ohai"
+
+wtf ?

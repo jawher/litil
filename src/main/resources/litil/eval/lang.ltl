@@ -1,0 +1,14 @@
+data Ast = Num Number | Add Ast Ast | Sub Ast Ast | Mul Ast Ast | Div Ast Ast
+
+let eval n =
+  match n
+    Num a => a
+    Add a b => (eval a) + (eval b)
+    Sub a b => (eval a) - (eval b)
+    Mul a b => (eval a) * (eval b)
+    Div a b => (eval a) / (eval b)
+
+
+let a = Mul (Add (Num 4) (Num 3)) (Sub (Num 4) (Num 1))
+
+let e = eval a

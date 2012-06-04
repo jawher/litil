@@ -1,0 +1,3 @@
+data Tree a = Null | Leaf a | Node (Tree a) a (Tree a)
+
+let t = Node (Leaf 5) 4 (Leaf 3)

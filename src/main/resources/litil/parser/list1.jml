@@ -1,0 +1,6 @@
+data List a = Cons a (List a) | Nil
+
+let map xs f =
+  match xs
+    Nil => Nil
+    Cons h t => Cons (f h) (map t f)

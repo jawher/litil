@@ -1,0 +1,26 @@
+let y = [1, 2, 3]
+let z = []
+
+exception Ex
+
+let penultimate xs =
+  match xs
+    [] => throw Ex
+    [_] => throw Ex
+    [a, _] => a
+    h :: t => penultimate t
+
+let x = penultimate [["g"], ["c"]]
+
+let append x xs = x :: xs
+
+let l = 1 :: 2 :: 3 :: Nil
+
+let l2 = append 0 l
+
+let len xs =
+  match xs
+    [] => 0
+    _ :: t => 1 + len t
+
+len l

@@ -1,0 +1,37 @@
+let x =
+  match 2
+    a => ("ok", a)
+
+let y =
+  match "a"
+    a => ("ok", a)
+
+
+let y =
+  match "a"
+    _ => "ok"
+
+let y =
+  match ("a", 3)
+    a => ("ok", a)
+
+let y =
+  match ("a", 3)
+    (a, b) => ("ok", a, b)
+
+let y =
+  match ("a", 3)
+    (a, _) => ("ok", a)
+
+let y =
+  match ("a", 3)
+    (_, b) => ("ok", b)
+
+let y =
+  match ("a", 3)
+    (_, _) => "ok"
+
+let y =
+  match ("a", 3)
+    (a, b, c) => ("ok", a, b)
+    _ => "nok"

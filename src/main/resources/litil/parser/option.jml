@@ -1,0 +1,9 @@
+data Option a = Some a | None
+
+let x = Some 5
+let y = Some (Some 'a')
+let z = Some None
+
+data Tree a = Null | Leaf a | Node (Tree a) * a * (Tree a)
+
+let abc = Node (Leaf 'b', 'a', Leaf 'c')

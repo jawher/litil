@@ -1,0 +1,19 @@
+let gcd a b =
+  if b == 0 then
+    a
+  else
+    gcd b (a % b)
+
+let gcd a b =
+  if b == 0 then
+    a
+  else
+    gcd b (a % b)
+  end
+end
+
+let add a b = a end
+
+let x = add 5 "a"
+
+log (gcd 49 35)

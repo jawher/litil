@@ -1,0 +1,6 @@
+let l = Cons 5 (Cons 6 Nil)
+let l2 = Cons "a" (Cons "b" Nil)
+let l3 = Nil
+let l4 = Cons Nil Nil
+
+

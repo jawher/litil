@@ -1,0 +1,7 @@
+let gcd a b =
+  if b = 0 then
+    a
+  else
+    gcd b (a % b)
+
+let a = gcd 24 16

@@ -1,0 +1,15 @@
+let f = \x y -> x + x
+--let f = { x y -> x + x }
+
+
+data List a = Cons a (List a) | Nil
+
+let fold f s xs =
+  match xs
+    Nil => s
+    Cons h t => fold f (f s h) t
+
+let xs = Cons 5 (Cons 6 Nil)
+
+let s = fold (\res x -> res + x) 0 xs
+--let s = fold {res x -> res + x} 0 xs

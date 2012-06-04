@@ -1,0 +1,21 @@
+exception Wat String
+
+let f x = if x=3 then throw Wat "hi" else 42
+
+let x =
+  try
+    f 4
+  catch
+    Wat s => 4
+
+data List a = Cons a (List a) | Nil
+exception EmptyList
+
+let l = (Cons 1 (Cons 2 (Cons 6 Nil)))
+let last xs =
+  match xs
+    Cons h Nil => h
+    Cons _ t => last t
+    _ => throw EmptyList
+
+last Nil

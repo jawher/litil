@@ -1,0 +1,5 @@
+data List a = Cons a (List a) | Nil
+
+let hxs = Cons 4
+
+let xs = hxs (Cons 3 Nil)

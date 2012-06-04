@@ -1,0 +1,72 @@
+KEYWORD ('let') @ 1:1
+NAME ('split') @ 1:5
+NAME ('n') @ 1:11
+NAME ('xs') @ 1:13
+SYM ('=') @ 1:16
+INDENT ('  ') @ 2:1
+KEYWORD ('let') @ 2:3
+NAME ('split_rec') @ 2:7
+NAME ('n') @ 2:17
+NAME ('done') @ 2:19
+NAME ('rem') @ 2:24
+SYM ('=') @ 2:28
+INDENT ('    ') @ 3:1
+KEYWORD ('match') @ 3:5
+NAME ('rem') @ 3:11
+INDENT ('      ') @ 4:1
+NAME ('Cons') @ 4:7
+NAME ('h') @ 4:12
+NAME ('t') @ 4:14
+SYM ('=>') @ 4:16
+INDENT ('        ') @ 5:1
+KEYWORD ('let') @ 5:9
+NAME ('ndone') @ 5:13
+SYM ('=') @ 5:19
+NAME ('concat') @ 5:21
+NAME ('done') @ 5:28
+SYM ('(') @ 5:33
+NAME ('Cons') @ 5:34
+NAME ('h') @ 5:39
+NAME ('Nil') @ 5:41
+SYM (')') @ 5:44
+NEWLINE ('\n') @ 6:1
+KEYWORD ('if') @ 6:9
+NAME ('n') @ 6:12
+SYM ('=') @ 6:13
+NUM ('1') @ 6:14
+KEYWORD ('then') @ 6:16
+SYM ('(') @ 6:21
+NAME ('ndone') @ 6:22
+SYM (',') @ 6:27
+NAME ('t') @ 6:29
+SYM (')') @ 6:30
+KEYWORD ('else') @ 6:32
+SYM ('(') @ 6:37
+NAME ('split_rec') @ 6:38
+SYM ('(') @ 6:48
+NAME ('n') @ 6:49
+SYM ('-') @ 6:50
+NUM ('1') @ 6:51
+SYM (')') @ 6:52
+NAME ('ndone') @ 6:54
+NAME ('t') @ 6:60
+SYM (')') @ 6:61
+DEINDENT ('      ') @ 7:1
+NAME ('Nil') @ 7:7
+SYM ('=>') @ 7:11
+SYM ('(') @ 7:14
+NAME ('done') @ 7:15
+SYM (',') @ 7:19
+NAME ('rem') @ 7:21
+SYM (')') @ 7:24
+DEINDENT ('    ') @ 8:1
+DEINDENT ('  ') @ 8:1
+DEINDENT ('') @ 8:1
+NAME ('split_rec') @ 8:3
+NAME ('n') @ 8:13
+NAME ('Nil') @ 8:15
+NAME ('xs') @ 8:19
+DEINDENT ('') @ 10:1
+NAME ('split') @ 10:1
+NUM ('5') @ 10:7
+EOF ('$') @ 10:8

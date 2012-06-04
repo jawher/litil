@@ -1,0 +1,245 @@
+data List a = Cons a (List a) | Nil
+exception EmptyList
+
+let l = (Cons 1 (Cons 2 (Cons 6 Nil)))
+let l = [1, 2, 6]
+
+let last xs =
+  match xs
+    Cons h Nil => h
+    Cons _ t => last t
+    _ => throw EmptyList
+
+let last xs =
+  match xs
+    [h] => h
+    _ :: t => last t
+    _ => throw EmptyList
+
+let ex01 = last l
+
+exception NotEnoughElements
+
+let penultimate xs =
+  match xs
+    Cons h1 (Cons h2 Nil) => h1
+    Cons h t => penultimate t
+    _ => throw NotEnoughElements
+
+let penultimate xs =
+  match xs
+    [h1, h2] => h1
+    h :: t => penultimate t
+    _ => throw NotEnoughElements
+
+let ex02 = penultimate l
+
+let nth n xs =
+  match xs
+    Cons h t => if n = 0 then h else nth (n - 1) t
+    _ => throw NotEnoughElements
+
+let ex03 = nth 2 l
+
+let length xs =
+  match xs
+    Cons _ t => 1 + length t
+    Nil => 0
+
+let ex04 = length l
+
+let reverse xs =
+  let rec_rev rem res =
+    match rem
+      Cons h t => rec_rev t (Cons h res)
+      Nil => res
+
+  rec_rev xs Nil
+
+let ex05 = reverse l
+
+let isPalindrome xs = xs = (reverse xs)
+
+let l2 = Cons 1 (Cons 3 (Cons 1 Nil))
+let ex06 = isPalindrome l2
+let ex06 = isPalindrome l
+
+let concat xs ys =
+  let rec_concat xs ys =
+    match xs
+      Cons h t => Cons h (rec_concat t ys)
+      Nil => ys
+  rec_concat xs ys
+
+let l3 = concat l l2
+
+--let flatten xs =
+--  match xs
+--    Nil => Nil
+--    Cons h t => concat (flatten h) (flatten t)
+--    x => Cons x Nil
+
+let l4 = Cons l (Cons l2 Nil)
+
+--let ex07 = flatten l3
+
+let compress xs =
+  let rec_comp x xs =
+    match xs
+      Cons h t => if x = h then (rec_comp x t) else (Cons h (rec_comp h t))
+      Nil => Nil
+
+  match xs
+    Cons h t => Cons h (rec_comp h t)
+    Nil => Nil
+
+let l4 = Cons 'a' (Cons 'a' (Cons 'b' (Cons 'c' (Cons 'c' (Cons 'c' Nil) ))))
+let ex08 = compress l4
+
+let packBad xs =
+  let rec_pack x xs ys =
+    match ys
+      Cons h t => if x = h then (rec_pack x (Cons h xs) t) else (xs, ys)
+      Nil => (xs, Nil)
+
+  match xs
+    Cons h t =>
+      let match_rem = rec_pack h (Cons h Nil) t
+      match match_rem
+        (matc, rem) => Cons matc (packBad rem)
+    Nil => Nil
+
+let pack xs =
+  let rec_pack x xs ys =
+    match ys
+      Cons h t => if x = h then (rec_pack x (Cons h xs) t) else (xs, ys)
+      Nil => (xs, Nil)
+
+  match xs
+    Cons h t =>
+      let (matc, rem) = rec_pack h (Cons h Nil) t
+      Cons matc (pack rem)
+    Nil => Nil
+
+let ex09 = pack l4
+
+let map f xs =
+  match xs
+    Nil => Nil
+    Cons h t => Cons (f h) (map f t)
+
+
+let encode xs = map (\l -> (length l, nth 0 l))  (pack xs)
+
+let ex10 = encode l4
+
+--let withLenMaybe xs = if length xs > 1 then withLen xs else nth 0 xs
+
+--let encodeModified xs = map withLenMaybe (pack xs)
+
+--let ex11 = encodeModified l4
+
+let ntimes count item =
+  let mk_rec count item res = if count=0 then res else mk_rec (count - 1) item (Cons item res)
+
+  mk_rec count item Nil
+
+let decodeItemBad countAndItem =
+  match countAndItem
+    (count, item) => ntimes count item
+
+let decodeItem (count, item) = ntimes count item
+--let decode xs = flatten (map decodeItem xs)
+
+--let ex12 = decode ex10
+let a = ex10
+
+
+let encodeDirectBad xs =
+  let rec_enc x count ys =
+    match ys
+      Cons h t => if x = h then (rec_enc x (count + 1) t) else (count, ys)
+      Nil => (count, Nil)
+
+  match xs
+    Cons h t =>
+      let countAndRem = rec_enc h 1 t
+      match countAndRem
+        (count, rem) => Cons (count, h) (encodeDirectBad rem)
+    Nil => Nil
+
+let encodeDirect xs =
+  let rec_enc x count ys =
+    match ys
+      Cons h t => if x = h then (rec_enc x (count + 1) t) else (count, ys)
+      Nil => (count, Nil)
+
+  match xs
+    Cons h t =>
+      let (count, rem) = rec_enc h 1 t
+      Cons (count, h) (encodeDirect rem)
+    Nil => Nil
+
+let ex13 = encodeDirect l4
+
+let duplicate xs =
+  match xs
+    Cons h t => concat (ntimes 2 h) (duplicate t)
+    Nil => Nil
+
+let ex14 = duplicate l
+
+let duplicateN n xs =
+  match xs
+    Cons h t => concat (ntimes n h) (duplicateN n t)
+    Nil => Nil
+
+let ex15 = duplicateN 3 l
+
+let drop n xs =
+  let drop_rec n i done rem =
+    match rem
+      Cons h t => if i=1 then (drop_rec n n done t) else concat done (Cons h (drop_rec n (i-1) done t))
+      Nil => Nil
+
+  drop_rec n n Nil xs
+
+let ex16 = drop 3 ex15
+
+let split n xs =
+  let split_rec n done rem =
+    match rem
+      Cons h t =>
+        let ndone = concat done (Cons h Nil)
+        if n=1 then (ndone, t) else (split_rec (n-1) ndone t)
+      Nil => (done, rem)
+  split_rec n Nil xs
+
+let ex17 = split 3 ex14
+
+let sliceBad from to xs =
+  match (split from xs)
+    (_, ys) =>
+      match (split (to - from) ys)
+        (res, _) => res
+
+let slice from to xs =
+  let (_, ys) = (split from xs)
+  let (res, _) = (split (to - from) ys)
+  res
+
+let ex18 = slice 2 5 ex14
+
+let rotateBad n xs =
+  let i = if n > 0 then n else ((length xs) + n)
+  match (split i xs)
+    (l, r) => concat r l
+
+let rotate n xs =
+  let i = if n > 0 then n else ((length xs) + n)
+  let (l, r) = (split i xs)
+  concat r l
+
+
+let ex18 = rotate 3 ex14
+let ex18 = rotate (-2) ex14

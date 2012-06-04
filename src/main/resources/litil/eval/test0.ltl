@@ -1,0 +1,18 @@
+let x = 5
+let y = x + 4
+let x = 3
+let z = y
+
+let dbl x = x + x
+
+let z = (dbl 2) + 3
+
+let add x y = x + y
+let a = (add z x) + y
+let a = add z x
+
+let aa = (5, "bla")
+let bb = (4*5, "blo", 'a', add 4 6)
+let cc = (4*5, "blo", 'a', add, dbl)
+
+let b = ()

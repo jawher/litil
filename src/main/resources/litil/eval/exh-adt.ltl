@@ -1,0 +1,5 @@
+let A = B | C
+
+let f e =
+  match e
+    case B => 5

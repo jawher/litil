@@ -1,0 +1,9 @@
+let trfact r n =
+  if n=1 then
+    r
+  else
+    trfact (r * n) (n-1)
+
+let fact =  trfact 1
+
+let x = fact 5

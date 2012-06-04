@@ -1,0 +1,20 @@
+data List a = Cons a (List a) | Nil
+
+let fold f s xs =
+  match xs
+    Nil => s
+    Cons h t => fold f (f s h) t
+
+let xs = Cons 5 (Cons 6 Nil)
+
+let s = fold add 0 xs
+
+let len l =
+  match l
+    Nil => 0
+    Cons h t => 1 + len t
+
+let map f xs =
+  match xs
+    Nil => Nil
+    Cons h t => Cons (f h) (map t f)
