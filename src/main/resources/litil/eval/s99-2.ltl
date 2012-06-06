@@ -1,0 +1,239 @@
+exception EmptyList
+
+let l = [1, 2, 6] --oahi
+
+exception NotEq
+exception NotTrue
+
+let assertEq a b = if a = b then () else throw NotEq
+
+let assertTrue a = if a then () else throw NotTrue
+let assertNot a = assertTrue not a
+
+let last xs =
+  match xs
+    [h] => h
+    _ :: t => last t
+    _ => throw EmptyList
+
+let ex01 = last l
+
+assertEq 6 ex01
+
+exception NotEnoughElements
+
+let penultimate xs =
+  match xs
+    [h1, h2] => h1
+    h :: t => penultimate t
+    _ => throw NotEnoughElements
+
+let ex02 = penultimate l
+--assert
+assertEq 2 ex02
+
+let nth n xs =
+  match xs
+    h :: t => if n = 0 then h else nth (n - 1) t
+    _ => throw NotEnoughElements
+
+let ex03 = nth 2 l
+--assert
+assertEq 6 ex03
+
+let length xs =
+  match xs
+    _ :: t => 1 + length t
+    [] => 0
+
+let ex04 = length l
+--assert
+assertEq 3 ex04
+
+let reverse xs =
+  let rec_rev rem res =
+    match rem
+      h :: t => rec_rev t (h :: res)
+      [] => res
+
+  rec_rev xs []
+
+let ex05 = reverse l
+--assert
+assertEq [6, 2, 1] ex05
+
+let isPalindrome xs = xs = (reverse xs)
+
+let l2 = [1, 3, 1]
+let ex06 = isPalindrome l2
+--assert
+assertTrue ex06
+
+let ex06 = isPalindrome l
+--assert
+assertNot ex06
+
+let concat xs ys =
+  let rec_concat xs ys =
+    match xs
+      h :: t => h :: (rec_concat t ys)
+      [] => ys
+  rec_concat xs ys
+
+let ex07 = concat l l2
+--assert
+assertEq [1, 2, 6, 1, 3, 1] ex07
+
+--let flatten xs =
+--  match xs
+--    [] => Nil
+--    h :: t => concat (flatten h) (flatten t)
+--    x => Cons x Nil
+
+let l4 = [l, l2]
+
+--let ex07 = flatten l3
+
+let compress xs =
+  let rec_comp x xs =
+    match xs
+      h :: t => if x = h then (rec_comp x t) else (h :: (rec_comp h t))
+      [] => []
+
+  match xs
+    h :: t => h :: (rec_comp h t)
+    [] => []
+
+let l4 = ['a', 'a', 'b', 'c', 'c', 'c']
+let ex08 = compress l4
+--assert
+assertEq ['a', 'b', 'c'] ex08
+
+let pack xs =
+  let rec_pack x xs ys =
+    match ys
+      h :: t => if x = h then (rec_pack x (h :: xs) t) else (xs, ys)
+      [] => (xs, [])
+
+  match xs
+    h :: t =>
+      let (matc, rem) = rec_pack h ([h]) t
+      matc :: (pack rem)
+    [] => []
+
+let ex09 = pack l4
+--assert
+assertEq [['a', 'a'], ['b'], ['c', 'c', 'c']] ex09
+
+let map f xs =
+  match xs
+    [] => []
+    h :: t => (f h) :: (map f t)
+
+
+let encode xs = map (\l => (length l, nth 0 l))  (pack xs)
+
+let ex10 = encode l4
+--assert
+assertEq [(2, 'a'), (1, 'b'), (3, 'c')] ex10
+
+--let withLenMaybe xs = if length xs > 1 then withLen xs else nth 0 xs
+
+--let encodeModified xs = map withLenMaybe (pack xs)
+
+--let ex11 = encodeModified l4
+
+let ntimes count item =
+  let mk_rec count item res = if count=0 then res else mk_rec (count - 1) item (item :: res)
+
+  mk_rec count item []
+
+--let decodeItem (count, item) = ntimes count item
+--let decode xs = flatten (map decodeItem xs)
+
+--let ex12 = decode ex10
+let a = ex10
+
+let encodeDirect xs =
+  let rec_enc x count ys =
+    match ys
+      h :: t => if x = h then (rec_enc x (count + 1) t) else (count, ys)
+      [] => (count, [])
+
+  match xs
+    h :: t =>
+      let (count, rem) = rec_enc h 1 t
+      (count, h) :: (encodeDirect rem)
+    [] => []
+
+let ex13 = encodeDirect l4
+--assert
+assertEq [(2, 'a'), (1, 'b'), (3, 'c')] ex13
+
+
+let duplicate xs =
+  match xs
+    h :: t => concat (ntimes 2 h) (duplicate t)
+    [] => []
+
+let ex14 = duplicate l
+--assert
+assertEq [1, 1, 2, 2, 6, 6] ex14
+
+
+let duplicateN n xs =
+  match xs
+    h :: t => concat (ntimes n h) (duplicateN n t)
+    [] => []
+
+let ex15 = duplicateN 3 l
+--assert
+assertEq [1, 1, 1, 2, 2, 2, 6, 6, 6] ex15
+
+let drop n xs =
+  let drop_rec n i done rem =
+    match rem
+      h :: t => if i=1 then (drop_rec n n done t) else concat done (h :: (drop_rec n (i-1) done t))
+      [] => []
+
+  drop_rec n n [] xs
+
+let ex16 = drop 3 ex15
+--assert
+assertEq [1, 1, 2, 2, 6, 6] ex16
+
+let split n xs =
+  let split_rec n done rem =
+    match rem
+      h :: t =>
+        let ndone = concat done [h]
+        if n=1 then (ndone, t) else (split_rec (n-1) ndone t)
+      [] => (done, rem)
+  split_rec n [] xs
+
+let ex17 = split 3 ex14
+--assert
+assertEq ([1, 1, 2], [2, 6, 6]) ex17
+
+let slice from to xs =
+  let (_, ys) = (split from xs)
+  let (res, _) = (split (to - from) ys)
+  res
+
+let ex18 = slice 2 5 ex14
+--assert
+assertEq [2, 2, 6] ex18
+
+let rotate n xs =
+  let i = if n > 0 then n else ((length xs) + n)
+  let (l, r) = (split i xs)
+  concat r l
+
+
+let ex19 = rotate 3 ex14
+--assert
+assertEq [2, 6, 6, 1, 1, 2] ex19
+
+let ex19 = rotate (-2) ex14
+--assert
+assertEq [6, 6, 1, 1, 2, 2] ex19
