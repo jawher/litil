@@ -17,6 +17,7 @@ public class LitilParser extends BaseParser {
 
         LBP.put("and", 5);
         LBP.put("or", 5);
+        LBP.put("not", 7);
         LBP.put("=", 7);
         LBP.put("<", 7);
         LBP.put(">", 7);
@@ -639,6 +640,11 @@ public class LitilParser extends BaseParser {
             Expr ex = expr(1);
             depth--;
             return new Expr.EThrow(ex);
+        } else if (is(tk, Token.Type.KEYWORD, "not")) {
+            depth++;
+            Expr ex = expr(LBP.get(tk.text));
+            depth--;
+            return new Expr.EAp(new Expr.EName("not"), ex);//unary not;
         } else {
             if (is(tk, Token.Type.NEWLINE) || is(tk, Token.Type.INDENT) || is(tk, Token.Type.DEINDENT)) {
                 throw error("Unfinished expression (A simple expression cannot have line breaks)");

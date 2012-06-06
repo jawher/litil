@@ -18,6 +18,11 @@ public class Prelude {
                 return -(Long) arg;
             }
         });
+        res.define("not", new Fn() {
+            public Object eval(Object arg, ValScope scope) {
+                return !(Boolean) arg;
+            }
+        });
         res.define("+", new Fn() {
             public Object eval(final Object arg1, ValScope scope) {
                 Fn fn = new Fn() {
@@ -165,6 +170,7 @@ public class Prelude {
     public static TypeScope trootScope() {
         TypeScope res = new TypeScope();
         res.define("-/1", Type.Function(Type.INT, Type.INT));
+        res.define("not", Type.Function(Type.BOOL, Type.BOOL));
         res.define("+", Type.Function(Arrays.asList(Type.INT, Type.INT), Type.INT));
         res.define("-", Type.Function(Arrays.asList(Type.INT, Type.INT), Type.INT));
         res.define("*", Type.Function(Arrays.asList(Type.INT, Type.INT), Type.INT));

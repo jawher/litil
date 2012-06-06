@@ -15,7 +15,7 @@ public class BaseLexer implements Lexer {
     private static final List<String> SYMBOLS = Arrays.asList("->", ".", "+", "-", "*", "/", "(", ")", "=", "%", "<", ">", ":", ",", "[", "]", "|", "_", "=>", "\\", "--", "::", "{", "}");
     private LexerStage rootStage = new LexerStage(SYMBOLS);
     private static final List<String> BOOLS = Arrays.asList("true", "false");
-    private static final List<String> KEYWORDS = Arrays.asList("let", "if", "then", "else", "and", "or", "data", "match", "exception", "try", "catch", "throw");
+    private static final List<String> KEYWORDS = Arrays.asList("let", "if", "then", "else", "and", "or", "not", "data", "match", "exception", "try", "catch", "throw");
     private int row = 1, col = 0;
     private String currentLine = null;
     private int lastIndentLength = 0;
