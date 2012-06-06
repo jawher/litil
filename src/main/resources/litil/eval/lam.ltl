@@ -7,7 +7,7 @@ let fold f s xs =
 
 let xs = Cons 5 (Cons 6 Nil)
 
-let s = fold (\res x -> res + x) 0 xs
+let s = fold (\res x => res + x) 0 xs
 
 let map f xs =
   match xs

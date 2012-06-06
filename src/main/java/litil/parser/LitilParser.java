@@ -616,7 +616,7 @@ public class LitilParser extends BaseParser {
             if (found(Token.Type.SYM, ":")) {
                 type = type();
             }
-            expect(Token.Type.SYM, "->");
+            expect(Token.Type.SYM, "=>");
             depth++;
             Expr res = expr(1);
             depth--;

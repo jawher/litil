@@ -14,7 +14,7 @@ let map f l =
     Cons h t => Cons (f h) (map f t)
     Nil => Nil
 
-let l2 = map (\x -> x%2=0) l
+let l2 = map (\x => x%2=0) l
 
 let a = 5
 

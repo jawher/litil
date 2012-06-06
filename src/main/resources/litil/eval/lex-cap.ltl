@@ -25,4 +25,4 @@ let g x =
 
 let res = g 2
 
-let res = (\x->\y->x+y) 5 3
+let res = (\x=>\y=>x+y) 5 3

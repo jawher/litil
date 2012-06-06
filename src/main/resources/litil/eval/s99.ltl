@@ -129,7 +129,7 @@ let map f xs =
     Cons h t => Cons (f h) (map f t)
 
 
-let encode xs = map (\l -> (length l, nth 0 l))  (pack xs)
+let encode xs = map (\l => (length l, nth 0 l))  (pack xs)
 
 let ex10 = encode l4
 
