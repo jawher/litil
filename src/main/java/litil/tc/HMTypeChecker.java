@@ -153,7 +153,7 @@ public class HMTypeChecker {
             return allExceptions ? Type.EXCEPTION : resType;
         } else if (node instanceof Expr.EThrow) {
             Expr.EThrow ethrow = (Expr.EThrow) node;
-            Type exType = analyze(ethrow.exception, env);
+            Type exType = analyze(ethrow.exception, env, nonGen);
             unify(exType, Type.EXCEPTION);
             return Type.EXCEPTION;
         } else if (node instanceof Expr.TryCatch) {
