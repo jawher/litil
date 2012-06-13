@@ -50,7 +50,14 @@ public class Evaluator {
             } else if (node instanceof Expr.EChar) {
                 return ((Expr.EChar) node).value;
             } else if (node instanceof Expr.EStr) {
-                return ((Expr.EStr) node).value;
+                String s = ((Expr.EStr) node).value;
+
+                List<Object> chars = new ArrayList<Object>();
+                for (int i = 0; i < s.length(); i++) {
+                    chars.add(s.charAt(i));
+
+                }
+                return makeList(chars);
             } else if (node == Expr.EUnit) {
                 return node;
             } else if (node instanceof Expr.ETuple) {
@@ -60,6 +67,13 @@ public class Evaluator {
                     res.add(eval(value, scope));
                 }
                 return res;
+            } else if (node instanceof Expr.EList) {
+                Expr.EList list = ((Expr.EList) node);
+                List<Object> res = new ArrayList<Object>();
+                for (Expr value : list.values) {
+                    res.add(eval(value, scope));
+                }
+                return makeList(res);
             } else if (node instanceof Expr.ERecord) {
                 Expr.ERecord record = ((Expr.ERecord) node);
                 Map<String, Object> res = new HashMap<String, Object>();
@@ -338,6 +352,14 @@ public class Evaluator {
             }
         } else {
             throw new RuntimeException("Unknow pattern type " + pat);
+        }
+    }
+
+    private Adt makeList(List<Object> res) {
+        if (res.isEmpty()) {
+            return Prelude.Nil;
+        } else {
+            return Prelude.Cons(res.get(0), makeList(res.subList(1, res.size())));
         }
     }
 

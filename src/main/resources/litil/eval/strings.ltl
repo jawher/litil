@@ -1,0 +1,16 @@
+let s = "Ohai there !"
+
+let len xs =
+  match xs
+    [] => 0
+    _ :: t => 1 + len t
+
+let indexOf ch s =
+  let indexOf ch s i =
+    match s
+      [] => -1
+      h :: t => if ch = h then i else indexOf ch t (i+1)
+  indexOf ch s 0
+
+let l = len s
+let x = indexOf 't' s

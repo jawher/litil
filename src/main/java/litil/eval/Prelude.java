@@ -11,6 +11,14 @@ import java.util.List;
 
 public class Prelude {
 
+    public static Adt Nil = new Adt("Nil", Collections.emptyList()) {
+
+        @Override
+        public String toString() {
+            return "[]";
+        }
+    };
+
     public static ValScope rootScope() {
         ValScope res = new ValScope();
         res.define("-/1", new Fn() {
@@ -136,35 +144,35 @@ public class Prelude {
         res.define("Cons", new Fn.BiFn() {
             @Override
             protected Object eval(Object arg1, Object arg2, ValScope scope) {
-                return new Adt("Cons", Arrays.asList(arg1, arg2)) {
-                    private List<Object> toList(Adt adt) {
-                        List<Object> items = new ArrayList<Object>();
-                        if ("Nil".equals(adt.tag)) {
-                            return Collections.emptyList();
-                        } else {
-                            items.add(adt.args.get(0));
-                            items.addAll(toList((Adt) adt.args.get(1)));
-                            return items;
-                        }
-                    }
-
-                    @Override
-                    public String toString() {
-                        return toList(this) + "";
-                    }
-                };
+                return Cons(arg1, arg2);
             }
+
+
         });
 
-        res.define("Nil", new Adt("Nil", Collections.emptyList()) {
+        res.define("Nil", Nil);
+
+        return res;
+    }
+
+    public static Adt Cons(final Object head, final Object tail) {
+        return new Adt("Cons", Arrays.asList(head, tail)) {
+            private List<Object> toList(Adt adt) {
+                List<Object> items = new ArrayList<Object>();
+                if ("Nil".equals(adt.tag)) {
+                    return Collections.emptyList();
+                } else {
+                    items.add(adt.args.get(0));
+                    items.addAll(toList((Adt) adt.args.get(1)));
+                    return items;
+                }
+            }
 
             @Override
             public String toString() {
-                return "[]";
+                return toList(this) + "";
             }
-        });
-
-        return res;
+        };
     }
 
     public static TypeScope trootScope() {

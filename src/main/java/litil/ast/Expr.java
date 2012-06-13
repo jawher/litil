@@ -87,9 +87,9 @@ public abstract class Expr extends Instruction {
     }
 
     public static final class EChar extends Expr {
-        public final String value;
+        public final char value;
 
-        public EChar(String value) {
+        public EChar(char value) {
             this.value = value;
         }
 

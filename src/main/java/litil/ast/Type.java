@@ -160,8 +160,8 @@ public abstract class Type {
 
     public static final Type INT = new Oper("Number", Collections.<Type>emptyList());
     public static final Type BOOL = new Oper("Boolean", Collections.<Type>emptyList());
-    public static final Type STR = new Oper("String", Collections.<Type>emptyList());
     public static final Type CHAR = new Oper("Char", Collections.<Type>emptyList());
+    public static final Type STR = List(CHAR);
     public static final Type UNIT = new Oper("()", Collections.<Type>emptyList());
 
     public static final Type Product(List<Type> types) {

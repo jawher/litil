@@ -554,7 +554,7 @@ public class LitilParser extends BaseParser {
         } else if (is(tk, Token.Type.STRING)) {
             return new Expr.EStr(tk.text);
         } else if (is(tk, Token.Type.CHAR)) {
-            return new Expr.EChar(tk.text);
+            return new Expr.EChar(tk.text.charAt(0));
         } else if (is(tk, Token.Type.SYM, "(")) {
             if (found(Token.Type.SYM, ")")) {
                 return Expr.EUnit;
@@ -572,19 +572,17 @@ public class LitilParser extends BaseParser {
 
             return res.size() == 1 ? res.get(0) : new Expr.ETuple(res);
         } else if (is(tk, Token.Type.SYM, "[")) {
-
-
             List<Expr> res = new ArrayList<Expr>();
 
             if (found(Token.Type.SYM, "]")) {
-                return makeList(res);
+                return new Expr.EList(res);
             } else {
                 res.add(expr(1));
                 while (found(Token.Type.SYM, ",")) {
                     res.add(expr(1));
                 }
                 expect(Token.Type.SYM, "]");
-                return makeList(res);
+                return new Expr.EList(res);
             }
 
         } else if (is(tk, Token.Type.SYM, "{")) {
@@ -655,13 +653,7 @@ public class LitilParser extends BaseParser {
 
     }
 
-    private Expr makeList(List<Expr> res) {
-        if (res.isEmpty()) {
-            return new Expr.EName("Nil");
-        } else {
-            return new Expr.EAp(new Expr.EAp(new Expr.EName("Cons"), res.get(0)), makeList(res.subList(1, res.size())));
-        }
-    }
+
 
     private Expr led(Expr left, Token tk) {
         dbg("led " + left + ", " + tk);
