@@ -1,6 +1,5 @@
 package litil.lexer;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,28 +48,5 @@ public class LexerStage {
                 ", terminal=" + terminal +
                 ", prefix='" + prefix + '\'' +
                 '}';
-    }
-
-    public static void main(String[] args) {
-        LexerStage ls = new LexerStage(Arrays.asList("-", "+", "--", "++", "->", "-+<", "<", ">", "=", "<=", ">="));
-        System.out.println(ls);
-        String input = "<$        ";
-        int i = 0;
-        LexerStage s = ls;
-        while (s != null) {
-            LexerStage n = s.next(input.charAt(i++));
-            if (n == null) {
-                break;
-            } else {
-                s = n;
-            }
-            System.out.println(i + "::" + s);
-        }
-        if(s.isTerminal()) {
-            System.out.println("=> Accepted "+s.getValue());
-        } else {
-            System.out.println("Rejected");
-        }
-        System.out.println("$="+input.charAt(i));
     }
 }
